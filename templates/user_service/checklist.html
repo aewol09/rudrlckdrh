@@ -1,0 +1,58 @@
+{% extends "base/base.html" %}
+
+{% block title %}거북목 체크리스트{% endblock %}
+
+{% block content %}
+<main>
+  <section class="main" style="max-width: 600px; margin: 0 auto; text-align: center;">
+    <h1 style="font-size: 1.75rem;">거북목 환경 요인 체크리스트</h1>
+    <p style="font-size: 1rem; color: #444;">아래 항목 중 자신에게 해당되는 환경을 체크해 보세요.</p>
+  </section>
+
+  <div class="form-container2" style="max-width: 600px; margin: 2rem auto; background: #fff; border-radius: 10px; box-shadow: 0 0 8px rgba(0,0,0,0.05);">
+    <h2 style="font-size: 1.25rem; margin-bottom: 1rem;">거북목 발생 요인 7가지</h2>
+    <div style="margin-top: 8px; padding: 10px; background: #fef2f2; border-left: 4px solid #dc2626; border-radius: 6px; font-size: 0.9rem; color: #991b1b;">
+      ⚠️ <strong>주의:</strong> 항목 중 2 ~ 3개 이상이 해당된다면 거북목증후군으로 진행될 수 있습니다.
+    </div>
+
+    <form method="post" action="" onsubmit="return showAlert()" style="margin-top: 20px;">
+      <ul style="list-style: none; padding: 0; margin: 0px; text-align: left;">
+        {% for factor in FACTORS %}
+        <li style="margin-bottom: 15px;">
+          <label style="display: flex; align-items: center;">
+            <input type="checkbox"
+                   name="factors"
+                   value="{{ factor }}"
+                   style="transform: scale(1.5); margin-right: 12px;"
+                   {% if saved_data.get(factor) == 1 %}checked{% endif %}>
+            <strong style="font-size: 1rem;">{{ FACTOR_KR[factor] }}</strong>
+          </label>
+        </li>
+        {% endfor %}
+      </ul>
+
+      <div style="margin-top: 24px; display: flex; flex-direction: column; gap: 12px;">
+        <button type="submit" style="width: 100%; max-width: 400px; height: 47px; color: #FFFFFF; font: 16px Arial, sans-serif; background: #2563EB; padding: 12px; border: none; border-radius: 6px; cursor: pointer; align-self: center;">
+          제출하기
+        </button>
+        <button type="button" data-href="{{ url_for('user_service.statistics') }}" onclick="goToLink(this)" style="width: 100%; max-width: 400px; height: 47px; color: #FFFFFF; font: 16px Arial, sans-serif; background: #626262; padding: 12px; border: none; border-radius: 6px; cursor: pointer; align-self: center;">
+          통계보기
+        </button>
+      </div>
+    </form>
+  </div>
+</main>
+
+<script>
+  function showAlert() {
+    alert("체크리스트가 제출되었습니다!");
+    return true;
+  }
+  function goToLink(el) {
+    const href = el.getAttribute('data-href');
+    if (href) {
+      window.location.href = href;
+    }
+  }
+</script>
+{% endblock %}

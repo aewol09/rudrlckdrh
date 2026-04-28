@@ -1,0 +1,8 @@
+static/uploads/full_videos/*.webm
+static/images/preview.mp4
+static/uploads/hidden/*.webm
+static/uploads/images/*.png
+
+.env
+
+db/database.db

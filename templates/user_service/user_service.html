@@ -1,0 +1,26 @@
+{% extends "base/base.html" %}
+
+{% block title %}거북목 개선 방법{% endblock %}
+
+{% block content %}
+  <h1>거북목 개선 방법</h1>
+  <p class="subtitle">원하는 탭을 선택하여 확인하세요</p>
+
+  <div class="container">
+    <div class="card" data-href="{{ url_for('user_service.checklist') }}" style="cursor: pointer;" onclick="goToLink(this)">
+      <div class="card-icon">✅</div>
+      <h2>체크리스트</h2>
+      <p>거북목의 원인, 주변 환경을 체크하세요.</p>
+      <a href="{{ url_for('user_service.checklist') }}" class="ch">바로가기 →</a>
+    </div>
+
+    <div class="card" data-href="{{ url_for('user_service.stretching') }}" style="cursor: pointer;" onclick="goToLink(this)">
+      <div class="card-icon">🧘‍♂️</div>
+      <h2>거북목 스트레칭</h2>
+      <p>거북목을 스트레칭으로 풀어주세요.</p>
+      <a href="{{ url_for('user_service.stretching') }}" class="mt">바로가기 →</a>
+    </div>
+  </div>
+
+
+{% endblock %}

@@ -1,0 +1,199 @@
+{% extends "base/base.html" %}
+{% block title %}사진 기록{% endblock %}
+
+{% block content %}
+<section class="photo-section">
+  <h1>{{ username }}님의 사진 기록</h1>
+  <p class="subtitle">거북목 상태를 촬영한 사진과 CVA 값을 확인해보세요.</p>
+
+  <div class="t">
+    <table>
+      <thead>
+        <tr>
+          <th>시간</th>
+          <th>CVA 값</th>
+          <th>상태</th>
+          <th>사진</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in records %}
+        <tr>
+          <td>{{ r["created_at"] }}</td>
+          <td>{{ r["cva_value"] }}°</td>
+          <td>{{ r["status"] }}</td>
+          <td>
+            <img src="{{ url_for('static', filename=r['image_path'].replace('static/', '')) }}" 
+                 width="150" class="clickable-img" alt="CVA 이미지">
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 이미지 모달 -->
+<div id="imgModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="modalImg">
+</div>
+
+<style>
+/* 기본 스타일 통일 */
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  background-color: #f9fafb;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* 제목, 부제 */
+h1 {
+  font-weight: bold;
+  text-align: center;
+  color: #10b981;
+  font-size: clamp(1.2rem, 5vw, 2rem);
+  max-width: 100%;
+  padding: 0 10px;
+  word-break: keep-all;
+}
+
+p.subtitle {
+  color: #555;
+  text-align: center;
+  margin-bottom: 3em;
+}
+
+/* 섹션 */
+.photo-section {
+  max-width: 1000px;
+  margin: 40px auto;
+  background: #f0fff4; /* 부드러운 연초록 배경 */
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(16,185,129,0.2);
+}
+
+/* 테이블 컨테이너 */
+.t {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 테이블 */
+.t table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(16,185,129,0.15);
+  background-color: #fff;
+}
+
+/* 헤더 */
+.t thead th {
+  background-color: #10b981;
+  color: white;
+  padding: 10px 6px;
+  text-align: center;
+  font-size: 1rem;
+  white-space: nowrap;
+  min-width: 80px;
+}
+
+/* 셀 */
+.t td {
+  text-align: center;
+  padding: 12px 10px;
+  font-size: 1rem;
+  color: #333;
+  background-color: #f0fff4;
+  border-bottom: 1px solid #a6f4c5;
+}
+
+/* 짝수행 */
+.t tr:nth-child(even) td {
+  background-color: #e0fff1;
+}
+
+/* hover 효과 */
+.t tr:hover td {
+  background-color: #c7ffe5;
+  transition: background-color 0.3s ease;
+}
+
+/* 이미지 */
+.clickable-img {
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(16,185,129,0.3);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.clickable-img:hover {
+  transform: scale(1.05);
+}
+
+/* 모달 */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  padding-top: 60px;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.8);
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 12px;
+}
+
+.close {
+  position: absolute;
+  top: 20px; right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .photo-section {
+    padding: 20px;
+  }
+  .t table, .t th, .t td {
+    font-size: 0.9rem;
+  }
+  .clickable-img {
+    width: 100%;
+  }
+}
+</style>
+
+<script>
+  // 모달 기능
+  const modal = document.getElementById("imgModal");
+  const modalImg = document.getElementById("modalImg");
+  const closeBtn = document.getElementsByClassName("close")[0];
+
+  document.querySelectorAll(".clickable-img").forEach(img => {
+    img.onclick = () => {
+      modal.style.display = "block";
+      modalImg.src = img.src;
+    };
+  });
+
+  closeBtn.onclick = () => modal.style.display = "none";
+  window.onclick = e => { if(e.target === modal) modal.style.display = "none"; }
+</script>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "/base/base.html" %}
+
+{% block title %}turtle_neck{% endblock %}
+
+{% block content %}
+<section class="main">
+    <div class="main-container">
+        {% if not session.get('user_id') %}
+            <!-- 비로그인 시 소개글과 영상 -->
+            <div class="intro">
+                <h1>너도 거북목?</h1>
+                <p>최신 기술로 구현된 직관적이고, <br> 효율적인 거북목 측정기를 만나보세요.</p>
+            </div>
+
+            <div class="video-box">
+                <video
+                    autoplay
+                    loop
+                    muted
+                    playsinline
+                    style="width: 100%; height: auto; display: block; object-fit: cover;"
+                >
+                    <source src="{{ url_for('static', filename='images/preview.mp4') }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        
+        {% set uid = session.get('user_id', '') %}
+        {% elif uid.startswith('guest') %}  
+            <div class="welcome">
+                <h2>환영합니다, 게스트님</h2>
+                <p>로그인에 성공하셨습니다. 이제 서비스를 자유롭게 이용하세요.</p>
+                <section class="main" style="text-align: center; padding: 50px;">
+                    <h1>프로그램 시작</h1>
+                    <!-- a 태그를 버튼처럼 스타일링 -->
+                    <a href="{{ url_for('cva') }}" class="guest">시작</a>
+                </section>
+            </div>
+
+        {% else %}
+            <!-- 로그인 시 보여줄 내용 -->
+            <div class="welcome">
+                <h2>환영합니다, {{ session.get('username') }}님!</h2>
+                <p>로그인에 성공하셨습니다. 이제 서비스를 자유롭게 이용하세요.</p>
+                <section class="main" style="text-align: center; padding: 50px;">
+                    <h1>프로그램 시작</h1>
+                    <!-- a 태그를 버튼처럼 스타일링 -->
+                    <a href="{{ url_for('cva') }}" class="guest">시작</a>
+                </section>
+            </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

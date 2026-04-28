@@ -1,0 +1,153 @@
+{% extends "base/base.html" %}
+{% block title %}풀 영상{% endblock %}
+
+{% block content %}
+<section class="video-section">
+  <h1>{{ username }}님의 풀영상 기록</h1>
+  <p class="subtitle">저장된 영상을 확인하고 거북목 횟수를 비교해보세요.</p>
+
+  <div class="t">
+    <table>
+      <thead>
+        <tr>
+          <th>시간</th>
+          <th>영상</th>
+          <th>거북목 횟수</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for v in videos %}
+        <tr>
+          <td>{{ v['timestamp'] }}</td>
+          <td>
+            <video controls>
+              <source src="{{ url_for('static', filename=v['video_path'].replace('static/', '')) }}" type="video/webm">
+            </video>
+          </td>
+          <td>{{ v['forward_count'] if v['forward_count'] is not none else 0 }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<style>
+/* 전체 배경 */
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  background-color: #f5f7fa;
+  color: #2c3e50;
+  margin: 0;
+  padding: 0;
+}
+
+/* 제목 */
+h1 {
+  font-weight: bold;
+  text-align: center;
+  color: #5a8dee;
+  font-size: clamp(1.2rem, 5vw, 2rem);
+  max-width: 100%;
+  padding: 0 10px;
+  word-break: keep-all;
+}
+
+/* 부제 */
+p.subtitle {
+  color: #555;
+  margin-bottom: 3em;
+  text-align: center;
+}
+
+/* 섹션 */
+.video-section {
+  max-width: 1000px;
+  margin: 40px auto;
+  background: #f9fbfd; /* 연한 그레이블루 */
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(90, 141, 238, 0.1);
+}
+
+/* 테이블 컨테이너 */
+.t {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 테이블 */
+.t table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(90, 141, 238, 0.1);
+  background-color: #fff;
+}
+
+/* 헤더 */
+.t thead th {
+  background-color: #5a8dee; /* 자연스러운 파랑 */
+  color: white;
+  padding: 10px 6px;
+  text-align: center;
+  font-size: 1rem;
+  white-space: nowrap;
+  min-width: 80px;
+}
+
+/* 셀 */
+.t td {
+  text-align: center;
+  padding: 12px 10px;
+  font-size: 1rem;
+  color: #2c3e50;
+  background-color: #eef3fa;
+  border-bottom: 1px solid #d4e1f4;
+}
+
+/* 짝수행 */
+.t tr:nth-child(even) td {
+  background-color: #e4edf9;
+}
+
+/* hover 효과 */
+.t tr:hover td {
+  background-color: #d7e6fb;
+  transition: background-color 0.3s ease;
+}
+
+/* 비디오 */
+video {
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(90, 141, 238, 0.25);
+  width: 300px;
+  transition: transform 0.2s ease;
+}
+
+video:hover {
+  transform: scale(1.05);
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .video-section {
+    padding: 20px;
+  }
+
+  .t table, .t th, .t td {
+    font-size: 0.9rem;
+  }
+
+  video {
+    width: 100%;
+  }
+}
+
+
+</style>
+
+
+{% endblock %}

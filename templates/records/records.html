@@ -1,0 +1,33 @@
+{% extends "base/base.html" %}
+
+{% block title %}기록 보기{% endblock %}
+
+{% block content %}
+  <h1>기록 보기</h1>
+  <p class="subtitle">원하는 기록을 선택하여 확인하세요</p>
+
+  <div class="container">
+    <div class="card" data-href="{{ url_for('full_videos.show_full_videos') }}" style="cursor: pointer;" onclick="goToLink(this)">
+      <div class="card-icon">▶️</div>
+      <h2>풀영상 보기</h2>
+      <p>저장된 풀영상을 확인하고 재생할 수 있습니다. 풀영상을 확인하세요.</p>
+      <a href="{{ url_for('full_videos.show_full_videos') }}" class="fu">바로가기 →</a>
+    </div>
+
+    <div class="card" data-href="{{ url_for('highlight_videos.show_highlight_videos') }}" style="cursor: pointer;" onclick="goToLink(this)">
+      <div class="card-icon">✨</div>
+      <h2>하이라이트</h2>
+      <p>거북목 순간들을 모아놓은 영상을 확인할 수 있습니다. 거북목 장면만 확인하세요.</p>
+      <a href="{{ url_for('highlight_videos.show_highlight_videos') }}" class="hi">바로가기 →</a>
+    </div>
+
+    <div class="card" data-href="{{ url_for('records_images.records_images') }}" style="cursor: pointer;" onclick="goToLink(this)">
+      <div class="card-icon">🖼️</div>
+      <h2>사진 보기</h2>
+      <p>저장된 사진들을 확인할 수 있습니다. 거북목인 순간들을 캡쳐해서 확인하세요.</p>
+      <a href="{{ url_for('records_images.records_images') }}" class="im">바로가기 →</a>
+    </div>
+  </div>
+
+
+{% endblock %}

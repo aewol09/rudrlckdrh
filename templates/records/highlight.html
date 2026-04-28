@@ -1,0 +1,147 @@
+{% extends "base/base.html" %}
+{% block title %}하이라이트 영상{% endblock %}
+
+{% block content %}
+<section class="highlight-section">
+  <h1>{{ username }}님의 하이라이트 기록</h1>
+  <p class="subtitle">거북목 순간만 모은 하이라이트 영상을 확인해보세요.</p>
+
+  <div class="t">
+    <table>
+      <thead>
+        <tr>
+          <th>시간</th>
+          <th>영상</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for h in videos %}
+        <tr>
+          <td>{{ h['timestamp'] }}</td>
+          <td>
+            <video controls>
+              <source src="{{ h['path'] }}" type="video/webm">
+            </video>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<style>
+/* 전체 배경 통일 */
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  background-color: #f9fafb;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* 제목 */
+h1 {
+  font-weight: bold;
+  text-align: center;
+  color: #e67300;
+  font-size: clamp(1.2rem, 5vw, 2rem);
+  max-width: 100%;
+  padding: 0 10px;
+  word-break: keep-all;
+}
+
+/* 부제 */
+p.subtitle {
+  color: #666;
+  margin-bottom: 3em;
+  text-align: center;
+}
+
+/* 섹션 */
+.highlight-section {
+  max-width: 1000px;
+  margin: 40px auto;
+  background: #fffaf5;
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(255,140,0,0.2);
+}
+
+/* 테이블 컨테이너 */
+.t {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 테이블 */
+.t table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(255,165,0,0.15);
+  background-color: #fff;
+}
+
+/* 헤더 */
+.t thead th {
+  background-color: #ff9800;
+  color: white;
+  padding: 10px 6px;
+  text-align: center;
+  font-size: 1rem;
+  white-space: nowrap;
+  min-width: 80px;
+}
+
+/* 셀 */
+.t td {
+  text-align: center;
+  padding: 12px 10px;
+  font-size: 1rem;
+  color: #333;
+  background-color: #fff7e6;
+  border-bottom: 1px solid #ffd699;
+}
+
+/* 짝수행 */
+.t tr:nth-child(even) td {
+  background-color: #fff3e0;
+}
+
+/* hover 효과 */
+.t tr:hover td {
+  background-color: #ffe8cc;
+  transition: background-color 0.3s ease;
+}
+
+/* 비디오 */
+video {
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(255,165,0,0.3);
+  width: 300px;
+  transition: transform 0.2s ease;
+}
+
+video:hover {
+  transform: scale(1.05);
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .highlight-section {
+    padding: 20px;
+  }
+
+  .t table, .t th, .t td {
+    font-size: 0.9rem;
+  }
+
+  video {
+    width: 100%;
+  }
+}
+</style>
+{% endblock %}

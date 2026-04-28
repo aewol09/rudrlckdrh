@@ -1,0 +1,461 @@
+/* 기본 레이아웃 */
+body {
+    margin: 0;
+    font-family: "Noto Sans KR", sans-serif;
+    background-color: #f9fafb;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    height: 100%;
+}
+
+/* 헤더 */
+header {
+    background: #fff;
+    border-bottom: 1px solid #eaeaea;
+    padding: 10px 30px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .menu a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.navbar .menu a:hover {
+    color: #2563eb;
+}
+
+/* 메인 컨텐츠 */
+main {
+    flex: 1;
+    padding: 40px 20px;
+    text-align: center;
+    width: 97%;
+}
+
+/* 메인 페이지 */
+.main h1 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.main p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.main .guest {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;   
+    align-items: center;       
+    gap: 250px;                 
+    margin-top: 50px;
+}
+
+.main-container .intro {
+    max-width: 400px;
+}
+
+.main-container .intro h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.main-container .intro p {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.main-container .video-box {
+    width: 480px;
+    height: 320px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+/* 폼 공통 */
+.form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.form-container2 {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.form-container2 table{
+    text-align: center;
+}
+
+.form-container2 .t{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.form-container h2 {
+    margin-bottom: 10px;
+}
+
+.form-container p {
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.form-container input {
+    width: 93%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+    transition: 0.2s;
+}
+
+.form-container input:focus {
+    border-color: #2563eb;
+}
+
+.form-container button {
+    width: 100%;
+    padding: 12px;
+    background: #2563eb;
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-bottom: -5px;
+}
+
+.form-container .guest {
+    width: 100%;
+    padding: 12px;
+    background: darkgray;
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+.form-container button:hover {
+    background: #1d4ed8;
+}
+
+.form-container .guest:hover{
+    background: gray;
+}
+
+.form-container a {
+    color: #2563eb;
+    text-decoration: none;
+}
+.form-container a:hover {
+    text-decoration: underline;
+}
+
+/* 푸터 */
+footer {
+    background: #f1f5f9;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+    border-top: 1px solid #eaeaea;
+    color: #555;
+}
+
+footer .footer-links a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #555;
+}
+footer .footer-links a:hover {
+    color: #2563eb;
+}
+
+
+.cva-container {
+    position: relative;
+    width: 100%;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.camera-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    aspect-ratio: 4 / 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#video,
+#canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* or contain */
+    border-radius: 8px;
+}
+
+#status {
+    position: absolute;
+    top: -60px;
+    font-size: 18px;
+    background: rgba(255,255,255,0.8);
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+#captureBtn {
+    padding: 10px 20px;
+    font-size: 16px;
+    z-index: 1;
+}
+
+#controls { 
+    position:absolute; top:500px; left:10px; 
+}
+
+#recordBtn {
+    padding: 10px 20px;
+    font-size: 16px;
+    z-index: 2;
+}
+
+.lcapture {
+    position: absolute;
+    top: 102%;
+}
+
+#countdownDisplay {
+    position: absolute;
+    top: 80%;
+    left: 25%;
+}
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  padding-top: 60px;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.8);
+}
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 90%;
+}
+.close {
+  position: absolute;
+  top: 20px; right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.3em;
+    text-align: center;
+}
+
+p.subtitle {
+    color: #555;
+    margin-bottom: 4em;
+    margin-top: 1px;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+.card {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    width: 250px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.card-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.card h2 {
+    margin: 0.5rem 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.card p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+}
+
+.card a {
+    font-size: 0.9rem;
+    display: inline-block;
+    text-decoration: none;
+    margin-top: auto;
+}
+
+.card a.fu{
+    text-decoration: none;
+    font-weight: bold;
+    color: #2563eb;
+}
+
+.card a.im{
+    text-decoration: none;
+    font-weight: bold;
+    color: #10b981;
+}
+
+.card a.hi{
+    text-decoration: none;
+    font-weight: bold;
+    color: #f59e0b;
+}
+
+.card a.ch{
+    text-decoration: none;
+    font-weight: bold;
+    color: #00ff00;
+}
+
+.card a.mt{
+    text-decoration: none;
+    font-weight: bold;
+    color: #82f7ff;
+}
+
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin-top: 20px;
+  }
+
+  .main-container .intro,
+  .main-container .video-box {
+    width: 90%;
+    max-width: 100%;
+  }
+
+  .container {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .card {
+    width: 90%;
+    max-width: 320px;
+  }
+
+  .form-container,
+  .form-container2 {
+    width: 90%;
+    padding: 20px;
+  }
+
+  #status {
+    top: -40px;
+    font-size: 16px;
+  }
+
+  #controls {
+    position: static;
+    margin-top: 20px;
+  }
+
+  #countdownDisplay {
+    top: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .navbar .menu a {
+    margin-left: 10px;
+    font-size: 0.9rem;
+  }
+
+  header {
+    padding: 10px 15px;
+  }
+
+  main {
+    padding: 20px 6px;
+  }
+}
