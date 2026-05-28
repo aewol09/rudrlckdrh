@@ -16,7 +16,7 @@ from router.footerlinks.footer import footer_bp
 from router.users.user_service import user_service_bp
 
 app = Flask(__name__)
-app.secret_key = os.environ['SECRET_KEY']
+app.secret_key = os.getenv("SECRET_KEY", "dev-secret-key")
 app.register_blueprint(signup_bp)
 app.register_blueprint(login_bp)
 app.register_blueprint(save_photo_bp)
@@ -45,4 +45,6 @@ def cva():
     return render_template("cva.html")
 
 if __name__ == "__main__":
-    app.run(os.environ['HOST_IP'], os.environ['HOST_PORT']) 
+    host = os.getenv("HOST_IP", "127.0.0.1")
+    port = int(os.getenv("HOST_PORT", "5000"))
+    app.run(host=host, port=port)

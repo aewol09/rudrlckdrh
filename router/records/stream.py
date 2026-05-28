@@ -3,9 +3,17 @@ import cv2
 
 stream_bp = Blueprint("stream", __name__)
 
-camera = cv2.VideoCapture(0)  # 웹캠 사용
+camera = None
+
+
+def get_camera():
+    global camera
+    if camera is None:
+        camera = cv2.VideoCapture(0)  # 웹캠 사용
+    return camera
 
 def generate_frames():
+    camera = get_camera()
     while True:
         success, frame = camera.read()
         if not success:

@@ -6,3 +6,7 @@ static/uploads/images/*.png
 .env
 
 db/database.db
+
+__pycache__/
+
+*.pyc
